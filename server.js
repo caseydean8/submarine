@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 
 // connect to MongoDB
-// moved database from mlab to cloud.mongodb.com. Had to create database in Cluster0 called submarine, and add collections users and subscriptions. For this to work on Heroku you have to whitelist/add IP address 0.0.0.0/0 by navigating to SECURITY/Network Access/IP Access List in the cloud.mongo dashboard. 
+// moved database from mlab to cloud.mongodb.com. Had to create database in Cluster0 called submarine, and add collections users and subscriptions. For this to work on Heroku you have to whitelist/add IP address 0.0.0.0/0 by navigating to SECURITY/Network Access/IP Access List in the cloud.mongo dashboard.
 //https://stackoverflow.com/questions/42159175/connecting-heroku-app-to-atlas-mongodb-cloud-service
 // Also changed config vars MONGODB_URI in Heroku settings
 
@@ -13,16 +13,16 @@ const PORT = process.env.PORT || 5000;
 // const MONGODB_URI =
 //   process.env.MONGODB_URI ||
 //   "mongodb login moved to env file :)";
+const MONGODB_URI = "mongodb://localhost/submarine" || process.env.MONGODB_URI;
 
 mongoose.connect(
-  process.env.MONGODB_URI,
+  MONGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   (err) => {
     if (err) {
       console.log("There is a problem with the connection" + err);
     } else {
-      console.log("Mongoose connection is good.");
-      console.log(process.env.MONGODB_URI);
+      console.log("===================Mongoose connection is good.====================");
     }
   }
 );

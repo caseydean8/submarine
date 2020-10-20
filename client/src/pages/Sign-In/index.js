@@ -46,6 +46,7 @@ class SignIn extends Component {
       API.loginUser(this.state)
         .then(response => {
           if (response.status === 200) {
+            console.log("response.data in Sign-in", response.data);
             this.props.updateAuthStatus(true);
             this.props.updateUserInfo(response.data);
             this.props.history.push("/main");

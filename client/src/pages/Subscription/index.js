@@ -7,6 +7,7 @@ import Logo from "../../components/Logo";
 import "./style.css";
 
 function Main(props) {
+  console.log("props in /main", props);
   return (
     <div className="App">
       <div className="container ">

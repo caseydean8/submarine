@@ -2,6 +2,7 @@ const axios = require("axios");
 
 const API = {
     loginUser: function (userInfo) {
+        console.log("userInfo in utils.API", userInfo);
         return axios.post("/login", userInfo)
     },
 
@@ -10,6 +11,7 @@ const API = {
     },
 
     registerUser: function (userInput) {
+        console.log("registerUser in utils/API.js", userInput);
         return axios.post("/register", userInput)
     },
 
