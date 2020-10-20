@@ -59,7 +59,7 @@ module.exports = (app) => {
         if (err) throw err;
         // added passport authentication so api/addsub post route could find user._id
         passport.authenticate("local")(req, res, function () {
-          console.log("Following User has been registerd");
+          console.log("Following User has been registered");
           console.log(user);
           res.send(user).end();
           // res.redirect("/");
