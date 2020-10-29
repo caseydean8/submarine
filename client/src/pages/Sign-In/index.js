@@ -13,7 +13,7 @@ class SignIn extends Component {
     this.state = {
       username: "",
       password: "",
-      form: ""
+      form: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,7 +24,7 @@ class SignIn extends Component {
     let { name, value } = event.target;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -44,9 +44,8 @@ class SignIn extends Component {
       );
     } else {
       API.loginUser(this.state)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
-            console.log("response.data in Sign-in", response.data);
             this.props.updateAuthStatus(true);
             this.props.updateUserInfo(response.data);
             this.props.history.push("/main");
@@ -59,7 +58,7 @@ class SignIn extends Component {
             );
           }
         })
-        .catch(err => {
+        .catch((err) => {
           this.props.triggerAlert(
             "Login failed",
             "Please check your information and try again.",

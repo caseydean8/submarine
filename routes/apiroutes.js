@@ -17,12 +17,8 @@ const scrubUser = (userObject) => {
 module.exports = (app) => {
   // Endpoint to login
   app.post("/login", passport.authenticate("local"), (req, res) => {
-    // console.log(passport.authenticate("local"));
-    console.log("req._passport in login ====================", req._passport);
     try {
       API.controller.getUser(req.user._id, (response) => {
-        // console.log("/login post route res.json(scrubUser(response)", res.json(scrubUser(response)));
-        console.log("response in /login", response);
         return res.json(scrubUser(response));
       });
     } catch (err) {
@@ -31,15 +27,12 @@ module.exports = (app) => {
   });
 
   app.get("/logout", (req, res) => {
-    console.log("req.body in /logout", req.body);
     req.logout();
     res.send({ result: "success" });
   });
 
   // Register User
   app.post("/register", (req, res) => {
-    console.log("req._passport in regist ====================", req._passport);
-
     var password = req.body.password;
     var password2 = req.body.password2;
 
@@ -55,14 +48,10 @@ module.exports = (app) => {
       });
 
       User.createUser(newUser, (err, user) => {
-        console.log("user created in post /register route", user);
         if (err) throw err;
         // added passport authentication so api/addsub post route could find user._id
         passport.authenticate("local")(req, res, function () {
-          console.log("Following User has been registered");
-          console.log(user);
           res.send(user).end();
-          // res.redirect("/");
         });
       });
     } else {
@@ -72,14 +61,9 @@ module.exports = (app) => {
 
   // Endpoint to get current user
   app.get("/api/getuser", (req, res) => {
-    console.log("req.body in /getuser route", req.body);
     if (!req.user) return res.json({ result: "no user" });
     try {
       API.controller.getUser(req.user._id, (response) => {
-        // console.log(
-        //   "/getuser route res.json(scrubUser(response)",
-        //   res.json(scrubUser(response))
-        // );
         return res.json(scrubUser(response));
       });
     } catch (err) {
@@ -88,8 +72,6 @@ module.exports = (app) => {
   });
 
   app.post("/api/addsub", (req, res) => {
-    console.log("req.session in addsub ===================", req.session);
-
     API.controller.addSubscription(req.user._id, req.body, (response) => {
       try {
         API.controller.getUser(req.user._id, (response) => {
@@ -102,7 +84,6 @@ module.exports = (app) => {
   });
 
   app.post("/api/removesub", (req, res) => {
-    console.log("req.user in /removesub", req.user);
     API.controller.removeSubscription(req.user._id, req.body.id, (response) => {
       try {
         API.controller.getUser(req.user._id, (response) => {

@@ -18,7 +18,7 @@ class SignIn extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      income: ""
+      income: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ class SignIn extends Component {
     let { name, value } = event.target;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -55,21 +55,22 @@ class SignIn extends Component {
     let formValidresponse = this.formIsValidated();
     if (formValidresponse === "YES") {
       API.registerUser(this.state)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
-            // console.log("this.props in Sign up", this.props);
-            console.log("response.data in Sign up", response.data);
             this.props.updateAuthStatus(true);
             this.props.updateUserInfo(response.data);
-            console.log("props.history in Sign-up", this.props.history);
             this.props.history.push("/main");
           }
           if (response.status === 401) {
-            this.props.triggerAlert("Alert","Check your information and try again","Close")
+            this.props.triggerAlert(
+              "Alert",
+              "Check your information and try again",
+              "Close"
+            );
           }
         })
-        .catch(err => {
-          throw (err)
+        .catch((err) => {
+          throw err;
         });
     } else {
       this.props.sendAlert("Alert", formValidresponse, "CLOSE");
@@ -199,7 +200,11 @@ class SignIn extends Component {
                     </div>
                   </div>
                 </div>
-                <button className="buttons" id="sign-up-button" onClick={this.handleSubmit}>
+                <button
+                  className="buttons"
+                  id="sign-up-button"
+                  onClick={this.handleSubmit}
+                >
                   Sign Up
                 </button>
                 <Link to={"/"}>Already a member?</Link>

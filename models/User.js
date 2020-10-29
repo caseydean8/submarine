@@ -41,8 +41,6 @@ module.exports.createUser = (newUser, callback) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         newUser.password = hash;
         try {
-            // console.log("newUser in models/User.js", newUser);
-            // console.log("callback in models/User", callback);
             newUser.save(callback);
         }
         catch (err) {
