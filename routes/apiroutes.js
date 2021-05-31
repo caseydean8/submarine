@@ -96,6 +96,6 @@ module.exports = (app) => {
   });
 
   app.all("*", function (req, res) {
-    res.redirect("https://submarine-sub-tracker.herokuapp.com/");
+    res.redirect("https:///blooming-peak-13476.herokuapp.com/");
   });
 };
