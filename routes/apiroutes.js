@@ -95,7 +95,7 @@ module.exports = (app) => {
     });
   });
 
-  app.all("*", function (req, res) {
-    res.redirect("https:///blooming-peak-13476.herokuapp.com/");
-  });
+  // app.all("*", function (req, res) {
+  //   res.redirect("https:///blooming-peak-13476.herokuapp.com/");
+  // });
 };
