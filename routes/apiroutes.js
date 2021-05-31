@@ -97,6 +97,7 @@ module.exports = (app) => {
 
   app.all("*", function (req, res) {
     // res.redirect("https:///blooming-peak-13476.herokuapp.com/");
-    res.redirect('back');
+    res.redirect("https:///blooming-peak-13476.herokuapp.com/main") 
+    // res.redirect('back');
   });
 };
